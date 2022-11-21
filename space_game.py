@@ -1,20 +1,17 @@
-import pygame
-import sys
+import pygame, controls
 from ship import Ship
 
 def run():
 
     pygame.init()
-    screen = pygame.display.set_mode((1200, 800))
+    screen = pygame.display.set_mode((700, 800))
     pygame.display.set_caption("Space Invaders")
     bg_color = (0, 0, 0)
     ship = Ship(screen)
 
     while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
-
+        controls.events(ship)
+        ship.update_ship()
         screen.fill(bg_color)
         ship.output()
         pygame.display.flip()
