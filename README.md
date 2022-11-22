@@ -1,5 +1,5 @@
 # Pythongame (Space Invaders)
-Игра по мотивам "Space Invaders" на языке программирования Python с использованием библиотеки Pygame.
+## Игра по мотивам "Space Invaders" н а языке программирования Python с использованием библиотеки Pygame.
 
 ### Список используемых библиотек
 * [Pygame (Python game)](https://pypi.org/project/pygame/)
