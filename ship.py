@@ -9,6 +9,7 @@ class Ship():
         self.rect = self.img.get_rect()
         self.screen_rect = screen.get_rect()
         self.rect.centerx = self.screen_rect.centerx
+        self.center = float(self.rect.centerx)
         self.rect.bottom = self.screen_rect.bottom
         self.mright = False
         self.mleft = False
@@ -20,6 +21,8 @@ class Ship():
     def update_ship(self):
         """обновление позиции пушки"""
         if self.mright and self.rect.right < self.screen_rect.right:
-            self.rect.centerx += 1
+            self.center += 0.5
         if self.mleft and self.rect.left >0:
-            self.rect.centerx -= 1
+            self.center -= 0.5
+
+        self.rect.centerx = self.center
