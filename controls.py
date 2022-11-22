@@ -1,6 +1,7 @@
 import pygame, sys
+from shot import Shot
 
-def events(ship):
+def events(screen, ship, shots):
     """обработка событий"""
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -12,6 +13,10 @@ def events(ship):
             #left
             elif event.key == pygame.K_a:
                 ship.mleft = True
+            #shot
+            elif event.key == pygame.K_SPACE:
+                new_bullet = Shot(screen, ship)
+                shots.add(new_bullet)
         elif event.type == pygame.KEYUP:
             #right
             if event.key == pygame.K_d:
@@ -19,3 +24,11 @@ def events(ship):
             #left
             elif event.key == pygame.K_a:
                 ship.mleft = False
+
+def update(bg_color, screen, ship, shots):
+    """обновления экрана"""
+    screen.fill(bg_color)
+    for shot in shots.sprites():
+        shot.draw_shot()
+    ship.output()
+    pygame.display.flip()
