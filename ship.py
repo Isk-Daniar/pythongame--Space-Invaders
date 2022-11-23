@@ -5,8 +5,8 @@ class Ship():
         """инициалищация корабля"""
 
         self.screen = screen
-        self.img = pygame.image.load("img/pixil-frame-1.png")
-        self.rect = self.img.get_rect()
+        self.image = pygame.image.load("img/pixil-frame-1.png")
+        self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
         self.rect.centerx = self.screen_rect.centerx
         self.center = float(self.rect.centerx)
@@ -16,13 +16,13 @@ class Ship():
 
     def output(self):
         """отображение корабля"""
-        self.screen.blit(self.img, self.rect)
+        self.screen.blit(self.image, self.rect)
 
     def update_ship(self):
         """обновление позиции пушки"""
         if self.mright and self.rect.right < self.screen_rect.right:
-            self.center += 0.5
+            self.center += 1.5
         if self.mleft and self.rect.left >0:
-            self.center -= 0.5
+            self.center -= 1.5
 
         self.rect.centerx = self.center
