@@ -9,11 +9,14 @@ def run():
     bg_color = (0, 0, 0)
     ship = Ship(screen)
     shots = Group()
+    enemies = Group()
+    controls.create_army(screen, enemies)
 
     while True:
         controls.events(screen, ship, shots)
         ship.update_ship()
-        shots.update()
-        controls.update(bg_color, screen, ship, shots)
+        controls.update(bg_color, screen, ship, enemies, shots)
+        controls.update_shots(shots)
+        controls.update_enemies(enemies)
 
 run()
