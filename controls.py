@@ -35,15 +35,19 @@ def update(bg_color, screen, ship, enemies, shots):
     enemies.draw(screen)
     pygame.display.flip()
 
-def update_shots(shots):
+def update_shots(enemies, shots):
     """обновления позиции пуль"""
     shots.update()
     for shot in shots.copy():
         if shot.rect.bottom <= 0:
             shots.remove(shot)
+    collisions = pygame.sprite.groupcollide(shots,enemies, True, True)
 
-def update_enemies(enemies):
+def update_enemies(ship, enemies):
+    """обновления позиции врагов"""
     enemies.update()
+    if pygame.sprite.spritecollideany(ship, enemies):
+        print('!!!!!!!!!!!')
 
 def create_army(screen, enemies):
     """создания армию"""

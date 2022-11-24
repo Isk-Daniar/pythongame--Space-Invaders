@@ -16,7 +16,7 @@ def run():
         controls.events(screen, ship, shots)
         ship.update_ship()
         controls.update(bg_color, screen, ship, enemies, shots)
-        controls.update_shots(shots)
-        controls.update_enemies(enemies)
+        controls.update_shots(enemies, shots)
+        controls.update_enemies(ship, enemies)
 
 run()
