@@ -26,3 +26,7 @@ class Ship():
             self.center -= 1.5
 
         self.rect.centerx = self.center
+
+    def create_ship(self):
+        """спаум"""
+        self.center = self.screen_rect.centerx
