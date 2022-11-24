@@ -6,9 +6,9 @@ class Shot(pygame.sprite.Sprite):
         """"создания пулю в позиции пушки"""
         super(Shot, self).__init__()
         self.screen = screen
-        self.rect = pygame.Rect(0, 0, 2, 12)
+        self.rect = pygame.Rect(0, 0, 400, 12)
         self.color = (0, 187, 212)
-        self.speed = 1.5
+        self.speed = 4.5
         self.rect.centerx = ship.rect.centerx
         self.rect.top = ship.rect.top
         self.y = float(self.rect.y)
