@@ -1,6 +1,7 @@
 import pygame, sys
 from shot import Shot
 from enemy import Enemy
+import time
 
 def events(screen, ship, shots):
     """обработка событий"""
@@ -35,19 +36,40 @@ def update(bg_color, screen, ship, enemies, shots):
     enemies.draw(screen)
     pygame.display.flip()
 
-def update_shots(enemies, shots):
+def update_shots(screen, enemies, shots):
     """обновления позиции пуль"""
     shots.update()
     for shot in shots.copy():
         if shot.rect.bottom <= 0:
             shots.remove(shot)
     collisions = pygame.sprite.groupcollide(shots,enemies, True, True)
+    if len(enemies) == 0:
+        shots.empty()
+        create_army(screen, enemies)
 
-def update_enemies(ship, enemies):
+def ship_kill (stats, screen, ship, enemies, shots):
+    """столкновения корабля и армии"""
+    stats.ships_left -= 1
+    enemies.empty()
+    shots.empty()
+    create_army(screen, enemies)
+    ship.create_ship()
+    time.sleep(1)
+
+def update_enemies(stats, screen, ship, enemies, shots):
     """обновления позиции врагов"""
     enemies.update()
     if pygame.sprite.spritecollideany(ship, enemies):
-        print('!!!!!!!!!!!')
+        ship_kill(stats, screen, ship, enemies, shots)
+    enemies_check(stats, screen, ship, enemies, shots)
+
+def enemies_check(stats, screen, ship, enemies, shots):
+    """проверка, добралась ли армия до края экрна"""
+    screen_rect = screen.get_rect()
+    for enemy in enemies.sprites():
+        if enemy.rect.bottom >= screen_rect.bottom:
+            ship_kill(stats, screen, ship, enemies, shots)
+            break
 
 def create_army(screen, enemies):
     """создания армию"""
