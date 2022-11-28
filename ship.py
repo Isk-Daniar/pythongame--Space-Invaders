@@ -1,9 +1,10 @@
 import pygame
+from pygame.sprite import Sprite
 
-class Ship():
+class Ship(Sprite):
     def __init__(self, screen):
         """инициалищация корабля"""
-
+        super(Ship, self).__init__()
         self.screen = screen
         self.image = pygame.image.load("img/pixil-frame-1.png")
         self.rect = self.image.get_rect()
